@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="examPortal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Pariksha Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="AdminDashboardController">
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="seal">PP</span> Pariksha Portal — Admin</a>
+    <nav>
+      <a href="#" ng-click="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page" ng-if="!loadingUser">
+    <span class="eyebrow">Admin dashboard</span>
+    <h2>Exam applications</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="num">{{ stats.total }}</div>
+        <div class="label">Total applications</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ stats.pending }}</div>
+        <div class="label">Pending review</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ stats.approved }}</div>
+        <div class="label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ stats.rejected }}</div>
+        <div class="label">Rejected</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h3 style="margin:0;">All applications</h3>
+      <select ng-model="filterStatus" style="width:auto; padding:8px 10px; border:1.5px solid var(--border); border-radius:4px;">
+        <option value="all">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <table class="data-table" ng-if="applications.length">
+      <thead>
+        <tr>
+          <th>Exam</th>
+          <th>Candidate</th>
+          <th>Father's name</th>
+          <th>Category</th>
+          <th>Mobile</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="a in applications | filter: (filterStatus === 'all' ? '' : {status: filterStatus})">
+          <td>{{ a.examName }}</td>
+          <td>{{ a.candidateName }}</td>
+          <td>{{ a.fatherName }}</td>
+          <td>{{ a.category }}</td>
+          <td class="mono">{{ a.mobile }}</td>
+          <td>
+            <span class="badge" ng-class="{
+              'badge-pending': a.status === 'pending',
+              'badge-approved': a.status === 'approved',
+              'badge-rejected': a.status === 'rejected'
+            }">{{ a.status }}</span>
+          </td>
+          <td>
+            <button class="btn btn-ghost" ng-disabled="a._updating" ng-click="setStatus(a, 'approved')" ng-if="a.status !== 'approved'">Approve</button>
+            <button class="btn btn-ghost" ng-disabled="a._updating" ng-click="setStatus(a, 'rejected')" ng-if="a.status !== 'rejected'">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p ng-if="!applications.length" style="color:var(--text-muted);">No applications submitted yet.</p>
+  </main>
+
+  <main class="page" ng-if="loadingUser">
+    <p>Loading…</p>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>
