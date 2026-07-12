@@ -1,0 +1,408 @@
+/* =========================================================
+   Exam Portal — Design Tokens
+   ========================================================= */
+:root {
+  --ink: #16233F;
+  --ink-soft: #3B4A6B;
+  --gold: #C9A227;
+  --gold-soft: #E4C766;
+  --bg: #E8EDF1;
+  --surface: #FFFFFF;
+  --success: #2F6844;
+  --success-bg: #E4F0E8;
+  --error: #B23A2E;
+  --error-bg: #F6E6E4;
+  --text: #22262B;
+  --text-muted: #5B6472;
+  --border: #C9D2DC;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius: 4px;
+  --shadow-card: 0 2px 8px rgba(22, 35, 63, 0.08), 0 1px 2px rgba(22, 35, 63, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin: 0 0 0.5em 0;
+  font-weight: 600;
+}
+
+a { color: var(--ink); }
+
+.mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+/* =========================================================
+   Layout shells
+   ========================================================= */
+.site-header {
+  background: var(--ink);
+  color: #fff;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--gold);
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-header .brand .seal {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+
+.site-header nav a {
+  color: #E8EDF1;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+.site-header nav a:hover { color: var(--gold-soft); }
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.page-narrow {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* =========================================================
+   Admit-card hero (signature element)
+   ========================================================= */
+.admit-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  overflow: hidden;
+  position: relative;
+  margin: 40px 0 56px;
+}
+
+.admit-card::before {
+  /* perforated tear line */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 130px;
+  width: 0;
+  border-left: 2px dashed var(--border);
+}
+
+.admit-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 120px;
+  width: 20px;
+  height: 20px;
+  background: var(--bg);
+  border-radius: 50%;
+  box-shadow: 0 calc(100% + 10px) 0 var(--bg);
+}
+
+.admit-card-main {
+  padding: 36px 40px;
+}
+
+.admit-card-main h1 {
+  font-size: 2.1rem;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.admit-card-main p {
+  color: var(--text-muted);
+  max-width: 40ch;
+  margin-bottom: 24px;
+}
+
+.admit-card-field {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.admit-card-field .val {
+  font-family: var(--font-mono);
+  color: var(--ink);
+}
+
+.admit-card-stub {
+  background: repeating-linear-gradient(135deg, var(--ink), var(--ink) 10px, #1c2c4c 10px, #1c2c4c 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--gold-soft);
+  gap: 6px;
+}
+
+.admit-card-stub .photo-box {
+  width: 64px;
+  height: 76px;
+  border: 2px solid var(--gold);
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--gold-soft);
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   Buttons & forms
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.08s ease, box-shadow 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn-primary:hover { background: var(--gold-soft); }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+}
+.btn-outline:hover { background: var(--ink); color: #fff; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 8px 12px;
+}
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+  border-color: var(--ink);
+}
+
+.field .hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+.form-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+}
+
+/* =========================================================
+   Status badges
+   ========================================================= */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-pending { background: #F1E9D2; color: #8A6D1D; }
+.badge-approved { background: var(--success-bg); color: var(--success); }
+.badge-rejected { background: var(--error-bg); color: var(--error); }
+
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  margin-bottom: 18px;
+}
+.alert-error { background: var(--error-bg); color: var(--error); border: 1px solid #E3B7B0; }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #B6D6C0; }
+
+/* =========================================================
+   Tables (admin)
+   ========================================================= */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.data-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: #F5F7F9; }
+
+/* =========================================================
+   Cards / grid
+   ========================================================= */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 18px 20px;
+  border-left: 3px solid var(--gold);
+}
+
+.stat-card .num {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.stat-card .label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+footer.site-footer {
+  text-align: center;
+  padding: 32px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .admit-card { grid-template-columns: 1fr; }
+  .admit-card-stub { padding: 20px 0; }
+  .admit-card::before, .admit-card::after { display: none; }
+  .site-header { padding: 14px 18px; }
+  .site-header nav a { margin-left: 14px; font-size: 0.85rem; }
+  .page { padding: 32px 18px 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
