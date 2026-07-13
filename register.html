@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="examPortal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — Pariksha Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="RegisterController">
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="seal">PP</span> Pariksha Portal</a>
+    <nav><a href="login.html">Login</a></nav>
+  </header>
+
+  <main class="page-narrow">
+    <span class="eyebrow">Create account</span>
+    <h2>Register</h2>
+
+    <form class="form-card" ng-submit="submit()">
+      <div class="alert alert-error" ng-if="error">{{ error }}</div>
+
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" ng-model="form.fullName" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" ng-model="form.email" required autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" ng-model="form.password" required minlength="6" autocomplete="new-password">
+        <div class="hint">At least 6 characters.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;" ng-disabled="loading">
+        {{ loading ? 'Creating account…' : 'Create account' }}
+      </button>
+
+      <p style="margin-top:16px; font-size:0.85rem; text-align:center; color:var(--text-muted);">
+        Already registered? <a href="login.html">Login here</a>
+      </p>
+    </form>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>
