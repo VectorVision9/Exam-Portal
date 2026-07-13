@@ -12,7 +12,7 @@
    ========================================================= */
 
 const firebaseConfig = {
- apiKey: "AIzaSyAWtAFLguFhl0fGtyeNkNW6v_6Bp7r66jg",
+    apiKey: "AIzaSyAWtAFLguFhl0fGtyeNkNW6v_6Bp7r66jg",
     authDomain: "exam-portal-7889a.firebaseapp.com",
     projectId: "exam-portal-7889a",
     storageBucket: "exam-portal-7889a.firebasestorage.app",
