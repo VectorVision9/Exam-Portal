@@ -12,13 +12,13 @@
    ========================================================= */
 
 const firebaseConfig = {
-   apiKey: "AIzaSyAWtAFLguFhl0fGtyeNkNW6v_6Bp7r66jg",
-  authDomain: "exam-portal-7889a.firebaseapp.com",
-  projectId: "exam-portal-7889a",
-  storageBucket: "exam-portal-7889a.firebasestorage.app",
-  messagingSenderId: "372720311233",
-  appId: "1:372720311233:web:3b7776bb66db1d3f5ead40",
-  measurementId: "G-HK4P9DCDB2"
+ apiKey: "AIzaSyAWtAFLguFhl0fGtyeNkNW6v_6Bp7r66jg",
+    authDomain: "exam-portal-7889a.firebaseapp.com",
+    projectId: "exam-portal-7889a",
+    storageBucket: "exam-portal-7889a.firebasestorage.app",
+    messagingSenderId: "372720311233",
+    appId: "1:372720311233:web:3b7776bb66db1d3f5ead40",
+    measurementId: "G-HK4P9DCDB2"
 };
 
 firebase.initializeApp(firebaseConfig);
